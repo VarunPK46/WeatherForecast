@@ -3,9 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="./index.css">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.4.1/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <title>Weather</title>
 </head>
-<body>
-    
+<body class="bg-gradient-to-br from-blue-100 via-blue-200 to-blue-400 min-h-screen flex items-center justify-center">
+    <div class="bg-white/90 shadow-2xl rounded-2xl p-6 sm:p-10 w-full max-w-xs sm:max-w-md md:max-w-2xl transition-all">
+        <h1 class="text-3xl font-extrabold text-center mb-6 text-blue-700 tracking-tight drop-shadow">Weather Forecast</h1>
+       <div class="flex mb-4 relative">
+  <input id="city" type="text" placeholder="Enter city name">
+  <button onclick="getWeather()" class="weather-btn">Get Weather</button>
+  <button onclick="getWeatherByLocation()" class="location-btn">Current Location</button>
+  <div id="recentCitiesDropdown" class="absolute left-0 top-full mt-1 w-full hidden"></div>
+</div>
+
+        <div class="flex items-center justify-center mb-2">
+            <button id="toggleUnit" class="bg-gray-200 text-gray-700 px-3 py-1 rounded hover:bg-gray-300 transition font-semibold shadow">Show °F</button>
+        </div>
+        <div id="weatherResult" class="text-center text-gray-700 mb-4"></div>
+        <div id="forecastContainer" class="mt-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-4"></div>
+    </div>
+    <script src="./index.js"></script>
 </body>
 </html>
