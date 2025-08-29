@@ -9,6 +9,25 @@ document.getElementById('toggleUnit').addEventListener('click', () => {
     }
 });
 
+document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('city').addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+            getWeather();
+        }
+    });
+    document.getElementById('city').addEventListener('focus', () => {
+        const recent = JSON.parse(localStorage.getItem('recentCities') || '[]');
+        const dropdown = document.getElementById('recentCitiesDropdown');
+        if (recent.length > 0) dropdown.classList.remove('hidden');
+    });
+    document.getElementById('city').addEventListener('blur', () => {
+        setTimeout(() => {
+            document.getElementById('recentCitiesDropdown').classList.add('hidden');
+        }, 200);
+    });
+});
+
+
 function displayWeather(data) {
     if (!data || !data.main) return;
     let tempC = data.main.temp;
@@ -53,23 +72,7 @@ function displayWeather(data) {
         </div>`;
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    document.getElementById('city').addEventListener('keydown', (e) => {
-        if (e.key === 'Enter') {
-            getWeather();
-        }
-    });
-    document.getElementById('city').addEventListener('focus', () => {
-        const recent = JSON.parse(localStorage.getItem('recentCities') || '[]');
-        const dropdown = document.getElementById('recentCitiesDropdown');
-        if (recent.length > 0) dropdown.classList.remove('hidden');
-    });
-    document.getElementById('city').addEventListener('blur', () => {
-        setTimeout(() => {
-            document.getElementById('recentCitiesDropdown').classList.add('hidden');
-        }, 200);
-    });
-});
+
 
 async function getWeather() {
     const apiKey = '20dd8cb5d228c9db295686c60a5128f3'; 
